@@ -5,7 +5,7 @@ local STRINGS = GLOBAL.STRINGS
 Assets =
 {
 	Asset("SOUNDPACKAGE", "sound/memeSound_1.fev"),
-    Asset("SOUND", "sound/memeSound_1.fsb"),
+	Asset("SOUND", "sound/memeSound_1.fsb"),
 	Asset( "ANIM", "anim/leggybird.zip" ),
 }
 
@@ -147,8 +147,8 @@ if GetModConfigData("creature_mob_10") == 2 then
 end
 
 if GetModConfigData("creature_mob_11") == 2 then
-	STRINGS.NAMES.WALRUS = "Violet"
-	STRINGS.NAMES.LITTLE_WALRUS = "Catherine"
+	STRINGS.NAMES.LITTLE_WALRUS = "Violet"
+	STRINGS.NAMES.WALRUS = "Catherine"
 	RemapSoundEvent( "dontstarve/creatures/wee_mctusk/taunt", "memeSound_1/creature/mactusk/little_taunt" )
 	RemapSoundEvent( "dontstarve/creatures/mctusk/taunt", "memeSound_1/creature/mactusk/taunt" )
 	RemapSoundEvent( "dontstarve/creatures/mctusk/attack", "memeSound_1/creature/mactusk/taunt" )
@@ -343,4 +343,15 @@ end
 
 if GetModConfigData("character_wendy") == 2 then
 	RemapSoundEvent( "dontstarve/characters/wendy/death_voice", "memeSound_1/character/wendy/death_voice" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/sisturn/place", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/level_change/1", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/level_change/2", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/summon_pre", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/summon", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/recall", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/buff/gen", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/buff/shield", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/buff/attack", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/buff/speed", "memeSound_1/character/wendy/" )
+	-- RemapSoundEvent( "dontstarve/characters/wendy/abigail/buff/retaliation", "memeSound_1/character/wendy/" )
 end

@@ -1,7 +1,7 @@
 name = "  Webber-ah Sound Collection"
-description = "v5.3.0"
+description = "v5.3.2"
 author = "Webber-ah"
-version = "5.3.0"
+version = "5.3.2"
 
 forumthread = ""
 api_version = 10
