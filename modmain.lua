@@ -26,6 +26,7 @@ Assets =
 --     - Ghost
 --     - Ewecus
 --     - Mactusk
+--     - Depth Worm
 --   Boss Including:
 --     - Treeguard
 --     - Deerclops
@@ -44,6 +45,7 @@ Assets =
 --     - Wardrobe
 --     - Character Spawning
 --     - Boat Sinking
+--     - Blowdart Shoot
 --   Game Including: 
 --     - Gift opening
 --   Player Including: 
@@ -90,7 +92,6 @@ end
 
 if GetModConfigData("creature_mob_2") == 2 then
 	RemapSoundEvent( "dontstarve/creatures/hound/distant", "memeSound_1/creature/hound/distant" )
-	RemapSoundEvent( "dontstarve/creatures/worm/distant", "memeSound_1/creature/hound/distant" )
 	RemapSoundEvent( "dontstarve/creatures/hound/bark", "memeSound_1/creature/hound/bark" )
 	RemapSoundEvent( "dontstarve/creatures/hound/death", "memeSound_1/creature/hound/die" )
 	RemapSoundEvent( "dontstarve/creatures/hound/growl", "memeSound_1/creature/hound/growl" )
@@ -145,11 +146,21 @@ if GetModConfigData("creature_mob_10") == 2 then
 	RemapSoundEvent( "dontstarve/creatures/spat/spit_hit", "memeSound_1/creature/spat/spit_hit" )
 end
 
--- if GetModConfigData("creature_mob_11") == 2 then
--- end
+if GetModConfigData("creature_mob_11") == 2 then
+	STRINGS.NAMES.WALRUS = "Violet"
+	STRINGS.NAMES.LITTLE_WALRUS = "Catherine"
+	RemapSoundEvent( "dontstarve/creatures/wee_mctusk/taunt", "memeSound_1/creature/mactusk/little_taunt" )
+	RemapSoundEvent( "dontstarve/creatures/mctusk/taunt", "memeSound_1/creature/mactusk/taunt" )
+	RemapSoundEvent( "dontstarve/creatures/mctusk/attack", "memeSound_1/creature/mactusk/taunt" )
+end
+
+if GetModConfigData("creature_mob_12") == 2 then
+	STRINGS.NAMES.WORM = "Ajarn Daeng"
+	RemapSoundEvent( "dontstarve/creatures/worm/distant", "memeSound_1/creature/worm/distant" )
+	RemapSoundEvent( "dontstarve/creatures/worm/bite", "memeSound_1/creature/worm/bite" )
+end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 function onleifdeath(inst)
-	print("fuck you")
 	-- only apply when host has the mod
     inst.SoundEmitter:PlaySound("memeSound_1/creature/groot/die")
 end
@@ -241,6 +252,10 @@ if GetModConfigData("sound_stuffs_4") == 2 then
 		GLOBAL.TheFocalPoint.SoundEmitter:PlaySound("memeSound_1/sound/stuffs/boat_break")
 	end)
 end
+
+if GetModConfigData("sound_stuffs_5") == 2 then
+	RemapSoundEvent( "dontstarve/wilson/blowdart_shoot", "memeSound_1/sound/stuffs/blowdart_shoot")
+end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 if GetModConfigData("sound_game_1") == 2 then
 	RemapSoundEvent( "dontstarve/HUD/Together_HUD/player_receives_gift_animation", "memeSound_1/sound/game/gift_open")
@@ -310,6 +325,7 @@ if GetModConfigData("character_wolfgang") == 2 then
 	RemapSoundEvent( "wolfgang1/dumbbell/gold_impact", "memeSound_1/character/wolfgang/dumbel" )
 	RemapSoundEvent( "wolfgang1/dumbbell/gem_impact", "memeSound_1/character/wolfgang/dumbel" )
 	RemapSoundEvent( "meta2/wolfgang/critical_work", "memeSound_1/character/wolfgang/critwork" )
+	RemapSoundEvent( "wolfgang2/common/gym/success", "memeSound_1/character/wolfgang/gym_success" )
 	RemapSoundEvent( "dontstarve/characters/wolfgang/death_voice", "memeSound_1/character/wolfgang/death_voice" )
 end
 
@@ -322,4 +338,9 @@ if GetModConfigData("character_wigfrid") == 2 then
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/quote/taunt", "memeSound_1/character/wigfrid/quote_taunt" )
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/quote/dropattack", "memeSound_1/character/wigfrid/quote_scare" )
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/death_voice", "memeSound_1/character/wigfrid/death_voice" )
+	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/fail", "memeSound_1/character/wigfrid/fail" )
+end
+
+if GetModConfigData("character_wendy") == 2 then
+	RemapSoundEvent( "dontstarve/characters/wendy/death_voice", "memeSound_1/character/wendy/death_voice" )
 end

@@ -1,7 +1,7 @@
 name = "  Webber-ah Sound Collection"
-description = "v5.2.1"
+description = "v5.3.0"
 author = "Webber-ah"
-version = "5.2.1"
+version = "5.3.0"
 
 forumthread = ""
 api_version = 10
@@ -32,6 +32,7 @@ end
 configuration_options =
 {
 	Title("󰀃 Non-Boss Monster 󰀃", ""),
+
 	{
 		name = "creature_mob_1",
 		label = "Tallbird",
@@ -120,10 +121,20 @@ configuration_options =
 		label = "Mactusk",
         hover = "Change the group sound to match their hunting instinct.",
 		options =	{{description = "Off", data = 1},
-					 {description = "W.I.P.", data = 2},},
+					 {description = "On", data = 2},},
 		default = 2,
 	},
+	{
+		name = "creature_mob_12",
+		label = "Depth Worm",
+        hover = "Change bite sound to someone as an iconic idol. This one also changes the Worm Warning sound to be somewhat more noticeable.",
+		options =	{{description = "Off", data = 1},
+					 {description = "On", data = 2},},
+		default = 2,
+	},
+
 	Title("󰀅 Boss Monster 󰀅", ""),
+
 	{
 		name = "creature_boss_1",
 		label = "Treeguard",
@@ -209,7 +220,17 @@ configuration_options =
 					 {description = "On", data = 2},},
 		default = 2,
 	},
+	{
+		name = "sound_stuffs_5",
+		label = "Blowdart Shooting",
+        hover = "Change the sound of blowdarts including the one from mactusk.",
+		options =	{{description = "Off", data = 1},
+					 {description = "On", data = 2},},
+		default = 2,
+	},
+
 	Title("󰀏 Game / HUD 󰀏", ""),
+
 	{
 		name = "sound_game_1",
 		label = "Gift Opening",
@@ -218,7 +239,9 @@ configuration_options =
 					 {description = "On", data = 2},},
 		default = 2,
 	},
+
 	Title("󰀎 Player 󰀎", ""),
+
 	{
 		name = "sound_player_1",
 		label = "Eat",
@@ -243,7 +266,9 @@ configuration_options =
 					 {description = "On", data = 2},},
 		default = 2,
 	},
+
 	Title("󰀐 NPCs 󰀐", ""),
+
 	{
 		name = "sound_npc_1",
 		label = "Wormhole",
@@ -283,7 +308,7 @@ configuration_options =
 	{
 		name = "character_wolfgang",
 		label = "Wolfgang",
-        hover = "Add Belune_BM's voice to some of Wolfgang sounds. Including: dumbel impact/gym success/mighty/wimpy/death",
+        hover = "Add Belune_BM's voice to some of Wolfgang sounds. Including: dumbel impact/crit work/gym success/mighty/wimpy/death",
 		options =	{{description = "Off", data = 1},
 					 {description = "On", data = 2},},
 		default = 2,
@@ -307,7 +332,7 @@ configuration_options =
 	{
 		name = "character_wendy",
 		label = "Wendy",
-        hover = "Add Beyond_BM's voice to some of Wendy sounds. Possible Including: summoning/potion/pipspook/abigail/sisturn/death  (Subjected to change)",
+        hover = "Add Beyond_BM's voice to some of Wendy sounds. Including: death , Possible Including: summoning/potion/pipspook/abigail/sisturn  (Subjected to change)",
 		options =	{{description = "Off", data = 1},
 					 {description = "W.I.P.", data = 2},},
 		default = 2,
