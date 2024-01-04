@@ -1,7 +1,7 @@
 name = "  Webber-ah Sound Collection"
-description = "v5.3.2"
+description = "v5.4.0"
 author = "Webber-ah"
-version = "5.3.2"
+version = "5.4.0"
 
 forumthread = ""
 api_version = 10
@@ -332,9 +332,9 @@ configuration_options =
 	{
 		name = "character_wendy",
 		label = "Wendy",
-        hover = "Add Beyond_BM's voice to some of Wendy sounds. Including: death , Possible Including: summoning/potion/pipspook/abigail/sisturn  (Subjected to change)",
+        hover = "Add Rosiiemarie's voice to some of Wendy sounds. Including: death,summon,recall,levelup,sisturn and all of her ghastly elixir.",
 		options =	{{description = "Off", data = 1},
-					 {description = "W.I.P.", data = 2},},
+					 {description = "On", data = 2},},
 		default = 2,
 	},
 }
