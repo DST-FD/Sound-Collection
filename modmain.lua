@@ -90,14 +90,14 @@ if leggyBirdData == 3 or leggyBirdData == 4 then
 	RemapSoundEvent( "dontstarve/creatures/tallbird/wakeup", "memeSound_1/creature/tallbird/wake" )
 end
 
-if GetModConfigData("creature_mob_2") == 2 then
+if GetModConfigData("creature_mob_2") then
 	RemapSoundEvent( "dontstarve/creatures/hound/distant", "memeSound_1/creature/hound/distant" )
 	RemapSoundEvent( "dontstarve/creatures/hound/bark", "memeSound_1/creature/hound/bark" )
 	RemapSoundEvent( "dontstarve/creatures/hound/death", "memeSound_1/creature/hound/die" )
 	RemapSoundEvent( "dontstarve/creatures/hound/growl", "memeSound_1/creature/hound/growl" )
 end
 
-if GetModConfigData("creature_mob_3") == 2 then
+if GetModConfigData("creature_mob_3") then
 	STRINGS.NAMES.MONKEY = "Derp"
 	STRINGS.NAMES.MONKEYBARREL = "Derp House"
 	RemapSoundEvent( "dontstarve/creatures/monkey/taunt", "memeSound_1/creature/monkey/taunt" )
@@ -105,12 +105,24 @@ if GetModConfigData("creature_mob_3") == 2 then
 	RemapSoundEvent( "dontstarve/creatures/monkey_nightmare/taunt", "memeSound_1/creature/monkey/nightmare_taunt" )
 end
 
-if GetModConfigData("creature_mob_4") == 2 then
+if GetModConfigData("creature_mob_4") then
 	RemapSoundEvent( "dontstarve/creatures/knight/pawground", "memeSound_1/creature/knight/taunt" )
 	RemapSoundEvent( "dontstarve/creatures/knight_nightmare/pawground", "memeSound_1/creature/creatures/knight/taunt" )
 end
 
-if GetModConfigData("creature_mob_5") == 2 then
+if GetModConfigData("creature_mob_5") then
+	AddPrefabPostInit("world", function(inst)
+		local preload = false;
+		inst:ListenForEvent("playerentered", function(inst, data)
+			if preload and (data == nil or data ~= GLOBAL.ThePlayer) then
+				return
+			end
+			local fx = GLOBAL.SpawnPrefab("deer_fire_charge")
+            fx.entity:SetParent(inst.entity)
+			fx:DoTaskInTime(.1 , fx:Remove())
+			preload = true
+		end)
+	end)
 	AddPrefabPostInit("deer_fire_charge", function(inst)
 		inst.SoundEmitter:PlaySound("memeSound_1/creature/deer/cast")
 	end)
@@ -119,34 +131,36 @@ if GetModConfigData("creature_mob_5") == 2 then
 	end)
 end
 
-if GetModConfigData("creature_mob_6") == 2 then
+if GetModConfigData("creature_mob_6") then
 	RemapSoundEvent( "dontstarve/creatures/koalefant/alert", "memeSound_1/creature/koalefant/taunt" )
 	RemapSoundEvent( "dontstarve/creatures/koalefant/angry", "memeSound_1/creature/koalefant/attack" )
 end
 
-if GetModConfigData("creature_mob_7") == 2 then
+if GetModConfigData("creature_mob_7") then
 	RemapSoundEvent( "dontstarve/creatures/werepig/howl", "memeSound_1/creature/werepig/howl" )
 end
 
-if GetModConfigData("creature_mob_8") == 2 then
-	RemapSoundEvent( "dontstarve/frog/attack_spit", "memeSound_1/creature/frog/attack_spit" )
-	RemapSoundEvent( "dontstarve/frog/attack_voice", "memeSound_1/creature/frog/attack_voice" )
-	RemapSoundEvent( "dontstarve/frog/die", "memeSound_1/creature/frog/die" )
-elseif GetModConfigData("creature_mob_8") == 3 then
-	RemapSoundEvent( "dontstarve/frog/attack_spit", "memeSound_1/creature/frog/attack_spit_bee" )
+if GetModConfigData("creature_mob_8") then
+	if GetModConfigData("creature_mob_8") == 3 then
+		RemapSoundEvent( "dontstarve/frog/attack_spit", "memeSound_1/creature/frog/attack_spit_bee" )
+	else
+		RemapSoundEvent( "dontstarve/frog/attack_spit", "memeSound_1/creature/frog/attack_spit" )
+		RemapSoundEvent( "dontstarve/frog/attack_voice", "memeSound_1/creature/frog/attack_voice" )
+		RemapSoundEvent( "dontstarve/frog/die", "memeSound_1/creature/frog/die" )
+	end
 end
 
-if GetModConfigData("creature_mob_9") == 2 then
+if GetModConfigData("creature_mob_9") then
 	RemapSoundEvent( "dontstarve/ghost/ghost_howl_LP", "memeSound_1/creature/ghost/howl_LP" )
 end
 
-if GetModConfigData("creature_mob_10") == 2 then
+if GetModConfigData("creature_mob_10") then
 	RemapSoundEvent( "dontstarve/creatures/spat/angry", "memeSound_1/creature/spat/attack" )
 	RemapSoundEvent( "dontstarve/creatures/spat/spit", "memeSound_1/creature/spat/spit" )
 	RemapSoundEvent( "dontstarve/creatures/spat/spit_hit", "memeSound_1/creature/spat/spit_hit" )
 end
 
-if GetModConfigData("creature_mob_11") == 2 then
+if GetModConfigData("creature_mob_11") then
 	STRINGS.NAMES.LITTLE_WALRUS = "Violet"
 	STRINGS.NAMES.WALRUS = "Catherine"
 	RemapSoundEvent( "dontstarve/creatures/wee_mctusk/taunt", "memeSound_1/creature/mactusk/little_taunt" )
@@ -154,29 +168,46 @@ if GetModConfigData("creature_mob_11") == 2 then
 	RemapSoundEvent( "dontstarve/creatures/mctusk/attack", "memeSound_1/creature/mactusk/taunt" )
 end
 
-if GetModConfigData("creature_mob_12") == 2 then
+if GetModConfigData("creature_mob_12") then
 	STRINGS.NAMES.WORM = "Ajarn Daeng"
 	RemapSoundEvent( "dontstarve/creatures/worm/distant", "memeSound_1/creature/worm/distant" )
 	RemapSoundEvent( "dontstarve/creatures/worm/bite", "memeSound_1/creature/worm/bite" )
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-function onleifdeath(inst)
-	-- only apply when host has the mod
-    inst.SoundEmitter:PlaySound("memeSound_1/creature/groot/die")
-end
-
-if GetModConfigData("creature_boss_1") == 2 then
+if GetModConfigData("creature_boss_1") then
 	STRINGS.NAMES.LEIF = "Groot"
 	RemapSoundEvent( "dontstarve/creatures/leif/transform_VO", "memeSound_1/creature/groot/taunt" )
-	AddPrefabPostInit("leif", function(inst)
-		inst:ListenForEvent("death", onleifdeath)
-	end)
-	AddPrefabPostInit("leif_sparse", function(inst)
-		inst:ListenForEvent("death", onleifdeath)
-	end)
+
+	-- Add Death Sound
+	if GetModConfigData("creature_boss_1") == 3 then
+		local function GetCurrentAnimation(inst)
+			return string.match(inst.entity:GetDebugString(), "anim: ([^ ]+) ")
+		end
+
+		AddPrefabPostInit("leif", function(inst)
+			local anim = ""
+			inst._deathSoundTask = inst:DoPeriodicTask(0.2, function()
+				anim = GetCurrentAnimation(inst)
+				if anim == "death" then
+					inst._deathSoundTask:Cancel()
+					inst.SoundEmitter:PlaySound("memeSound_1/creature/groot/die")
+				end
+			end)
+		end)
+		AddPrefabPostInit("leif_sparse", function(inst)
+			local anim = ""
+			inst._deathSoundTask = inst:DoPeriodicTask(0.2, function()
+				anim = GetCurrentAnimation(inst)
+				if anim == "death" then
+					inst._deathSoundTask:Cancel()
+					inst.SoundEmitter:PlaySound("memeSound_1/creature/groot/die")
+				end
+			end)
+		end)
+	end
 end
 
-if GetModConfigData("creature_boss_2") == 2 then
+if GetModConfigData("creature_boss_2") then
 	STRINGS.NAMES.DEERCLOPS = "Motorboi"
 	RemapSoundEvent( "dontstarve/creatures/deerclops/distant", "memeSound_1/creature/deerclops/distant" )
 	RemapSoundEvent( "dontstarve/creatures/deerclops/taunt_howl", "memeSound_1/creature/deerclops/taunt" )
@@ -186,7 +217,7 @@ if GetModConfigData("creature_boss_2") == 2 then
 	RemapSoundEvent( "dontstarve/creatures/deerclops/bodyfall_snow", "memeSound_1/creature/deerclops/die_crash" )
 end
 
-if GetModConfigData("creature_boss_3") == 2 then
+if GetModConfigData("creature_boss_3") then
 	RemapSoundEvent( "dontstarve_DLC001/creatures/bearger/distant", "memeSound_1/creature/bearger/distant" )
 	RemapSoundEvent( "dontstarve_DLC001/creatures/bearger/taunt", "memeSound_1/creature/bearger/taunt" )
 	RemapSoundEvent( "dontstarve_DLC001/creatures/bearger/attack", "memeSound_1/creature/bearger/attack" )
@@ -199,21 +230,22 @@ if GetModConfigData("creature_boss_3") == 2 then
 	RemapSoundEvent( "dontstarve_DLC001/creatures/bearger/hurt", "memeSound_1/creature/bearger/hurt" )
 end
 
-if GetModConfigData("creature_boss_4") == 2 then
+if GetModConfigData("creature_boss_4") then
 	RemapSoundEvent( "dontstarve_DLC001/creatures/moose/honk", "memeSound_1/creature/moose/honk" )
 end
 
-if GetModConfigData("creature_boss_5") >= 2 then
+if GetModConfigData("creature_boss_5") then
 	STRINGS.NAMES.BEEQUEEN = "E Mai Suay"
 	RemapSoundEvent( "dontstarve/creatures/together/bee_queen/enter", "memeSound_1/creature/beequeen/enter" )
 	RemapSoundEvent( "dontstarve/creatures/together/bee_queen/taunt", "memeSound_1/creature/beequeen/taunt" )
 	RemapSoundEvent( "dontstarve/creatures/together/bee_queen/attack", "memeSound_1/creature/beequeen/attack" )
-end
-if GetModConfigData("creature_boss_5") == 3 then
-	RemapSoundEvent( "dontstarve/music/music_epicfight_4", "memeSound_1/creature/beequeen/music_epicfight_beequeen" )
+	if GetModConfigData("creature_boss_5") == 3 then
+		RemapSoundEvent( "dontstarve/music/music_epicfight_4", "memeSound_1/creature/beequeen/music_epicfight_beequeen" )
+	end
 end
 
-if GetModConfigData("creature_boss_6") >= 2 then
+
+if GetModConfigData("creature_boss_6") then
 	RemapSoundEvent( "dontstarve/creatures/together/stalker/enter", "memeSound_1/creature/stalker/enter" )
 	RemapSoundEvent( "dontstarve/creatures/together/stalker/attack1_pbaoe_pre", "memeSound_1/creature/stalker/attack_pre" )
 	RemapSoundEvent( "dontstarve/creatures/together/stalker/attack_swipe", "memeSound_1/creature/stalker/attack_swipe" )
@@ -226,17 +258,22 @@ end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --   Game Sounds
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-if GetModConfigData("sound_stuffs_1") == 2 then
-	RemapSoundEvent( "dontstarve/wilson/use_armour_break", "memeSound_1/sound/stuffs/use_armor_break" )
-	RemapSoundEvent( "dontstarve/wilson/use_break", "memeSound_1/sound/stuffs/use_tools_break" )
+if GetModConfigData("sound_stuffs_1") then
+	if GetModConfigData("sound_stuffs_1") == 3 then
+		RemapSoundEvent( "dontstarve/wilson/use_armour_break", "memeSound_1/sound/stuffs/use_armor_break" )
+		RemapSoundEvent( "dontstarve/wilson/use_break", "memeSound_1/sound/stuffs/use_tools_break" )
+	else
+		RemapSoundEvent( "dontstarve/wilson/use_armour_break", "memeSound_1/sound/stuffs/use_armor_break_player" )
+		RemapSoundEvent( "dontstarve/wilson/use_break", "memeSound_1/sound/stuffs/use_tools_break_player" )
+	end
 end
 
-if GetModConfigData("sound_stuffs_2") == 2 then
+if GetModConfigData("sound_stuffs_2") then
 	RemapSoundEvent( "dontstarve/common/wardrobe_active", "memeSound_1/sound/stuffs/wardrobe_active")
 end
 
 -- Check if there is anything to do with TheWorld:PushEvent("ms_newplayerspawned", inst) | also consider adding "spawn_fx_small_high" or "spawn_fx_small"
-if GetModConfigData("sound_stuffs_3") == 2 then
+if GetModConfigData("sound_stuffs_3") then
 	RemapSoundEvent( "dontstarve/common/spawn/spawnportal_spawnplayer", "memeSound_1/sound/stuffs/characterspawn")
 
 	AddPrefabPostInit("world", function(inst)
@@ -247,26 +284,26 @@ if GetModConfigData("sound_stuffs_3") == 2 then
 	end)
 end
 
-if GetModConfigData("sound_stuffs_4") == 2 then
+if GetModConfigData("sound_stuffs_4") then
 	AddPrefabPostInit("fx_boat_pop", function(inst)
 		GLOBAL.TheFocalPoint.SoundEmitter:PlaySound("memeSound_1/sound/stuffs/boat_break")
 	end)
 end
 
-if GetModConfigData("sound_stuffs_5") == 2 then
+if GetModConfigData("sound_stuffs_5") then
 	RemapSoundEvent( "dontstarve/wilson/blowdart_shoot", "memeSound_1/sound/stuffs/blowdart_shoot")
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-if GetModConfigData("sound_game_1") == 2 then
+if GetModConfigData("sound_game_1") then
 	RemapSoundEvent( "dontstarve/HUD/Together_HUD/player_receives_gift_animation", "memeSound_1/sound/game/gift_open")
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-if GetModConfigData("sound_player_1") == 2 then
+if GetModConfigData("sound_player_1") then
 	RemapSoundEvent( "dontstarve/wilson/eat", "memeSound_1/sound/player/eat" )
 end
 
 -- Don't forget to fix this sound
-if GetModConfigData("sound_player_2") == 2 then
+if GetModConfigData("sound_player_2") then
 	RemapSoundEvent( "dontstarve/wilson/death", "memeSound_1/sound/player/death" )
 end
 
@@ -280,7 +317,7 @@ end
 -- ["squidgy"] = "aqol/new_test/squidgy",
 -- ["grainy"] = "aqol/new_test/grainy",
 -- ["DEFAULT_FALLBACK"] = "dontstarve/HUD/collect_resource",
-if GetModConfigData("sound_player_3") == 2 then
+if GetModConfigData("sound_player_3") then
 	RemapSoundEvent( "dontstarve/HUD/collect_resource", "memeSound_1/sound/player/collect_resource" )
 	--Auto-update code by CarlZalph: https://steamcommunity.com/id/CarlZalph
 	AddPrefabPostInit("world", function(inst)
@@ -296,29 +333,29 @@ if GetModConfigData("sound_player_3") == 2 then
 	end)
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-if GetModConfigData("sound_npc_1") == 2 then
+if GetModConfigData("sound_npc_1") then
 	STRINGS.NAMES.WORMHOLE = "Ohm"
 	RemapSoundEvent( "dontstarve/common/teleportworm/open", "memeSound_1/sound/npc/teleportworm_enter" )
 	RemapSoundEvent( "dontstarve/common/teleportworm/travel", "memeSound_1/sound/npc/teleportworm_travel" )
 	RemapSoundEvent( "dontstarve/common/teleportworm/swallow", "memeSound_1/base/silence" )
 end
 
-if GetModConfigData("sound_npc_2") == 2 then
+if GetModConfigData("sound_npc_2") then
 	RemapSoundEvent( "dontstarve/charlie/warn", "memeSound_1/sound/npc/charlie_warn" )
 	RemapSoundEvent( "dontstarve/charlie/attack", "memeSound_1/sound/npc/charlie_attack" )
 end
 
-if GetModConfigData("sound_npc_3") == 2 then
+if GetModConfigData("sound_npc_3") then
 	RemapSoundEvent( "dontstarve/pig/PigKingThrowGold", "memeSound_1/sound/npc/pigking_gold")
 end
 
-if GetModConfigData("sound_npc_4") == 2 then
+if GetModConfigData("sound_npc_4") then
 	RemapSoundEvent( "dontstarve_DLC001/creatures/deciduous/angry", "memeSound_1/sound/npc/deciduous_gnash" )
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --   Character Sounds
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-if GetModConfigData("character_wolfgang") == 2 then
+if GetModConfigData("character_wolfgang") then
 	RemapSoundEvent( "wolfgang2/characters/wolfgang/wimpy", "memeSound_1/character/wolfgang/wimpy" )
 	RemapSoundEvent( "wolfgang2/characters/wolfgang/mighty", "memeSound_1/character/wolfgang/mighty" )
 	RemapSoundEvent( "wolfgang1/dumbbell/stone_impact", "memeSound_1/character/wolfgang/dumbel" )
@@ -329,7 +366,7 @@ if GetModConfigData("character_wolfgang") == 2 then
 	RemapSoundEvent( "dontstarve/characters/wolfgang/death_voice", "memeSound_1/character/wolfgang/death_voice" )
 end
 
-if GetModConfigData("character_wigfrid") == 2 then
+if GetModConfigData("character_wigfrid") then
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/song/durability", "memeSound_1/character/wigfrid/song_weapon" )
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/song/fireresistance", "memeSound_1/character/wigfrid/song_fire" )
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/song/sanitygain", "memeSound_1/character/wigfrid/song_sanity" )
@@ -341,7 +378,7 @@ if GetModConfigData("character_wigfrid") == 2 then
 	RemapSoundEvent( "dontstarve_DLC001/characters/wathgrithr/fail", "memeSound_1/character/wigfrid/fail" )
 end
 
-if GetModConfigData("character_wendy") == 2 then
+if GetModConfigData("character_wendy") then
 	RemapSoundEvent( "dontstarve/characters/wendy/death_voice", "memeSound_1/character/wendy/death_voice" )
 	RemapSoundEvent( "dontstarve/characters/wendy/sisturn/place", "memeSound_1/character/wendy/sisturn" )
 	RemapSoundEvent( "dontstarve/characters/wendy/abigail/level_change/1", "memeSound_1/character/wendy/levelup_1" )
