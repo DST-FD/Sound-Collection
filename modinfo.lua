@@ -1,7 +1,7 @@
 name = "  Webber-ah Sound Collection"
-description = "v5.4.1"
+description = "v5.5.0"
 author = "Webber-ah"
-version = "5.4.1"
+version = "5.5.0"
 
 forumthread = ""
 api_version = 10
@@ -48,8 +48,9 @@ configuration_options =
 		label = "Hound",
         hover = "Change most of Hound sounds including bark, run, and death. This one also changes the Hound Warning sound to be somewhat more noticeable.",
 		options =	{{description = "Off", data = false},
-					 {description = "On", data = 2},},
-		default = 2,
+					 {description = "Only Warning", data = 2, hover = "This will only change the warning sound, but not the hound itself."},
+					 {description = "On", data = 3},},
+		default = 3,
 	},
 	{
 		name = "creature_mob_3",
@@ -129,8 +130,9 @@ configuration_options =
 		label = "Depth Worm",
         hover = "Change bite sound to someone as an iconic idol. This one also changes the Worm Warning sound to be somewhat more noticeable.",
 		options =	{{description = "Off", data = false},
-					 {description = "On", data = 2},},
-		default = 2,
+					 {description = "Only Warning", data = 2, hover = "This will only change the warning sound, but not the worm itself."},
+					 {description = "On", data = 3},},
+		default = 3,
 	},
 
 	Title("󰀅 Boss Monster 󰀅", ""),
@@ -147,7 +149,7 @@ configuration_options =
 	{
 		name = "creature_boss_2",
 		label = "Deerclops",
-        hover = "Change Deerclops into a motorbike racer who is ready to blast your ears. Including: taunt/attack/death/ and also the warning",
+        hover = "Change Deerclops into a motorbike racer and a wizard. Including: taunt/attack/death/warning, ice_lance/stun/mutated_death",
 		options =	{{description = "Off", data = false},
 					 {description = "On", data = 2},},
 		default = 2,
@@ -241,6 +243,14 @@ configuration_options =
 					 {description = "On", data = 2},},
 		default = 2,
 	},
+	{
+		name = "sound_game_2",
+		label = "Skeleton Inspecting",
+        hover = "Add a sound whenever you inspect/examine a player skeleton.",
+		options =	{{description = "Off", data = false},
+					 {description = "On", data = 2},},
+		default = 2,
+	},
 
 	Title("󰀎 Player 󰀎", ""),
 
@@ -267,6 +277,16 @@ configuration_options =
 		options =	{{description = "Off", data = false},
 					 {description = "On", data = 2},},
 		default = 2,
+	},
+	{
+		name = "sound_player_4",
+		label = "Disgusting Food",
+        hover = "Add a sound when the character refuse to eat something. Consider using different approaches if you experience lag, or turning this Off if lag still happen.",
+		options =	{{description = "Off", data = false},
+					 {description = "On (Timer)", data = 2, hover = "Using periodic task approach to check for animation, should work on every player."},
+					 {description = "On (Items)", data = 3, hover = "Using player controller approach to check used items, only work on yourself and vanilla characters."},
+					 {description = "On (Animation)", data = 4, hover = "Using player controller approach to check animation, only work on yourself."},},
+		default = 4,
 	},
 
 	Title("󰀐 NPCs 󰀐", ""),
@@ -299,6 +319,22 @@ configuration_options =
 		name = "sound_npc_4",
 		label = "Poison Birchnut Tree",
         hover = "Change the tree screaming sound to scream at you for deforestation.",
+		options =	{{description = "Off", data = false},
+					 {description = "On", data = 2},},
+		default = 2,
+	},
+	{
+		name = "sound_npc_5",
+		label = "Suspicious Dirtpile",
+        hover = "Add a sound whenever someone investigate a Suspicious Dirtpile.",
+		options =	{{description = "Off", data = false},
+					 {description = "On", data = 2},},
+		default = 2,
+	},
+	{
+		name = "sound_npc_6",
+		label = "Antlion Warning",
+        hover = "Add antlion sound cue whenever he is attacking you with sinkholes or cavein.",
 		options =	{{description = "Off", data = false},
 					 {description = "On", data = 2},},
 		default = 2,
